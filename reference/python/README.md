@@ -10,12 +10,31 @@ The `docs/` directory contains the markdown files for the site, with the main en
 
 ## Contributing
 
-As these docs are built from the source code, the best way to contribute is to make changes in the source code itself. This can include:
+As these docs are built from the source code, the best way to contribute is to **make changes in the source code** itself. This can include:
 
 - Improving docstrings
 - Adding missing docstrings
 - Fixing typos
 - etc.
+
+You will notice that at the top of each page are two icons: one to view the page source, and the other to edit the page. The "view source" icon takes you to the markdown file for that page, while the "edit page" icon takes you to the relevant source code file in GitHub. Use these links to help you navigate to the right place to make your contributions.
+
+---
+
+## Cross-reference in your project
+
+If you maintain a project that depends on LangChain or LangGraph and would like to reference classes, methods, functions, and more from these docs, you can do so! These pages include an `objects.inv` file that certain docs platforms, such as MkDocs, can use to automatically create links to these docs.
+
+To reference these docs in your project, add the following to your `mkdocs.yml` file:
+
+```yaml
+mkdocstrings:
+handlers:
+    python:
+    import:
+        - https://reference.langchain.com/python/objects.inv
+        - ... # any other inventories you want to include
+```
 
 ---
 
@@ -100,7 +119,7 @@ make build
 **How it works:** The `make prod-install` command:
 
 1. Restores `pyproject.toml` to use git sources
-2. Installs all packages from git with `uv sync --link-mode=copy`
+2. Installs all packages from git with `uv sync`
 
 ### Manual Configuration Switching
 
@@ -147,7 +166,7 @@ The `pyproject.dev.toml` file expects repositories to be cloned in this structur
   ├── langchain-redis/
   ├── langchain-sema4/
   ├── langchain-snowflake/
-  ├── langchain-tavily/
+  ├── langchain-tavily/      # (External org)
   ├── langchain-together/
   ├── langchain-unstructured/
   ├── langchain-upstage/
